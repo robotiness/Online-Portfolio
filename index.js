@@ -6,6 +6,7 @@ var nodemailer = require('nodemailer');
 
 const app=express();
 const PORT=process.env.PORT;
+//const PORT=3000;
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -44,7 +45,6 @@ app.post('/send', function (req, res) {
 		}
 	});
 
-	console.log('created');
 
 	transporter.sendMail({
 		from: emailAdress,
@@ -59,6 +59,15 @@ app.post('/send', function (req, res) {
 		'From Where Other: '+fromWhereOther+"\n"+
 		'Message: '+clientMsg+"\n",
 
+	
+	}, function(error, response){
+		if(error)
+		{
+			console.log(error);
+		}
+		else{
+			console.log("Message was sent.");
+		}
 	});
 	/*transporter.sendMail({
 		from: 'fastudyonlineflashcards@gmail.com',
