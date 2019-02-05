@@ -5,7 +5,6 @@ const mongoose=require('mongoose');
 var nodemailer = require('nodemailer');
 
 const app=express();
-var PORT=3000;
 const PORT=process.env.PORT;
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
