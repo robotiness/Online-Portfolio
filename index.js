@@ -52,6 +52,7 @@ app.post('/send', function (req, res) {
 		subject:"Message from "+firstName+" "+lastName,
 		text: 
 		'Company Name: '+companyName+"\n"+
+		'Email Address: '+emailAdress+"\n"+
 		'Project Type: '+projectType+"\n"+
 		'Duration: '+duration+" "+durationUnit+"\n"+
 		'Budget: '+budget+"\n"+
