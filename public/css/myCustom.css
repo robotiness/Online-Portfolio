@@ -1,0 +1,88 @@
+#clientForm{
+	   /*background-color: #F9F9FF;*/
+}
+.myInput{
+	display: block;
+    width: 100%;
+    line-height: 40px;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0 20px;
+    border-bottom: solid;
+    border-color: #FFFFFF;
+    color: #FFFFFF;
+}
+.myInput::placeholder{
+	color: #FFFFFF;
+}
+html, 
+body {
+    height: 100%;
+}
+.default-select>select{
+	display: block;
+    width: 100%;
+    line-height: 40px;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0 20px;
+    border-bottom: solid;
+    border-color: #FFFFFF;
+    color: #FFFFFF;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.default-select>select>option{
+	color: #89898A;
+}
+.genric-btn{
+	/*background: transparent!important;*/
+	font-size: 15px;
+	width: 100%;
+    color:#fff!important;
+}
+#form2{
+	display: none;
+}
+#otherMsg{
+	display: none;
+}
+.budget{
+    color: #fff;
+}
+.text-center{
+    vertical-align: middle!important;
+}
+.target2{
+height: 150px;
+}
+.myTest{
+    /*width: 200px;*/
+}
+.navbar-fixed-top{
+     position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+}
+.navbar-brand:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+#success{
+    display: none;
+}
+.myHidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+.myVisible {
+  display: : block;
+  opacity: 1;
+  transition: opacity 2s linear;
+}
+.single-project img:hover {
+    cursor: pointer!important;
+    transform: scale(0.9)!important;
+}
