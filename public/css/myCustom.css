@@ -82,7 +82,3 @@ height: 150px;
   opacity: 1;
   transition: opacity 2s linear;
 }
-.single-project img:hover {
-    cursor: pointer!important;
-    transform: scale(0.9)!important;
-}
