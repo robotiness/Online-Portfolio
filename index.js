@@ -26,7 +26,7 @@ app.post('/send', function (req, res) {
 	var firstName=req.body.firstName;
 	var lastName=req.body.lastName;
 	var companyName=req.body.companyName;
-	var emailAdress=req.body.emailAdress;
+	var emailAdress=req.body.emailAddress;
 	var fromWhere=req.body.fromWhere;
 	var fromWhereOther=req.body.fromWhereOther;
 	var projectType=req.body.projectType;
