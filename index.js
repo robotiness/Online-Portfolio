@@ -41,7 +41,7 @@ app.post('/send', function (req, res) {
 		service: 'Gmail',
 		auth: {
 			user: 'fastudyonlineflashcards@gmail.com',
-			pass: '!Stephmybaby72517'
+			pass: '2BZZ9i2nQnVcRyR'
 		}
 	});
 
