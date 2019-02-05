@@ -82,7 +82,3 @@ height: 150px;
   opacity: 1;
   transition: opacity 2s linear;
 }
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-}
