@@ -12,10 +12,14 @@ window.onload = function() {
 	{
 		bigScreen.style.display="none";
 		smallScreen.style.display="block"
+		smallScreen.id="project";
+		bigScreen.id="notProject";
 	}
 	else{
 		bigScreen.style.display="block";
 		smallScreen.style.display="none";
+		smallScreen.id="notProject";
+		bigScreen.id="project";
 	}
 }
 
