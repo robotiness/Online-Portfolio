@@ -197,7 +197,15 @@ function success()
 	form1.style.display="none";
 	form2.style.display="none";
 	success.style.display="block";
-	success.scrollIntoView();
+	if(screen.width<=600)
+	{
+		var successbel=document.getElementById("belowSuccess");
+		successbel.scrollIntoView();
+
+	}
+	else{
+		success.scrollIntoView();
+	}
 
 	setTimeout(function(){
 		success.classList.add('myHidden');
