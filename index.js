@@ -5,8 +5,12 @@ const mongoose=require('mongoose');
 var nodemailer = require('nodemailer');
 
 const app=express();
-const PORT=process.env.PORT;
-//const PORT=3000;
+var PORT=3000;
+if(process.env.PORT)
+{
+	PORT=process.env.PORT;
+}
+
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");

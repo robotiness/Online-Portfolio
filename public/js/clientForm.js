@@ -6,7 +6,53 @@ window.onload = function() {
 	{
 		success();
 	}
+	var bigScreen=document.querySelectorAll('.myBigScreen')[0];
+	var smallScreen=document.querySelectorAll('.mySmallScreen')[0];
+	if(screen.width<=997)
+	{
+		bigScreen.style.display="none";
+		smallScreen.style.display="block"
+	}
+	else{
+		bigScreen.style.display="block";
+		smallScreen.style.display="none";
+	}
 }
+
+var addEvent = function(object, type, callback) {
+    if (object == null || typeof(object) == 'undefined') return;
+    if (object.addEventListener) {
+        object.addEventListener(type, callback, false);
+    } else if (object.attachEvent) {
+        object.attachEvent("on" + type, callback);
+    } else {
+        object["on"+type] = callback;
+    }
+};
+
+addEvent(window, "resize", function(event) {
+	var bigScreen=document.querySelectorAll('.myBigScreen')[0];
+	var smallScreen=document.querySelectorAll('.mySmallScreen')[0];
+	if(screen.width<=997)
+	{
+		bigScreen.style.display="none";
+		smallScreen.style.display="block"
+	}
+	else{
+		bigScreen.style.display="block";
+		smallScreen.style.display="none";
+	}
+});
+
+
+
+
+
+
+
+
+
+
 function optionMsg()
 {
 	var select=document.getElementById("mySelect");

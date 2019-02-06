@@ -82,3 +82,36 @@ height: 150px;
   opacity: 1;
   transition: opacity 2s linear;
 }
+.mySmallScreen{
+  display: none;
+}
+@media only screen and (max-width: 991px) {
+  .myLogo{
+    width: 60px!important;
+  }
+  .myPic{
+    padding-left: 25%;
+  }
+
+}
+@media only screen and (max-width: 801px) {
+  .myPic{
+    padding-left:0;
+  }
+
+}
+@media only screen and (max-width: 766px) {
+  .myPic{
+    display: none!important;
+  }
+
+}
+@media only screen and (max-width: 371px) {
+  .myLogo{
+    width: 20px!important;
+  }
+  .navbar-brand{
+    font-size: 13px!important;
+  }
+
+}
