@@ -47,12 +47,12 @@ CSS
 
 					<div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
 						<ul class="navbar-nav">
-							<li><a href="#home">Home</a></li>
-							<li><a href="#service">Service</a></li>
-							<li><a href="#about">Tech</a></li>
-							<li><a href="#resume">Resume</a></li>
-							<li><a href="#project">Projects</a></li>
-							<li><a href="#contact">Contact</a></li>
+							<li class="myDis"><a href="#home">Home</a></li>
+							<li class="myDis"><a href="#service">Service</a></li>
+							<li class="myDis"><a href="#about">Tech</a></li>
+							<li class="myDis"><a href="#resume">Resume</a></li>
+							<li class="myDis"><a href="#project">Projects</a></li>
+							<li class="myDis"><a href="#contact">Contact</a></li>
 								
 						</ul>
 					</div>						
@@ -406,37 +406,37 @@ CSS
 	
 		<div id="form1" class="container" style="padding-top: 0px;">
 		<form id="formPost" method="post" action="/send">
-		<div class="row">
+		<div class="row clientFormRow">
 			<div class="col-lg-12">
 				<h3 style="padding-bottom: 50px;color: #FFFFFF;" class="text-center">Tell me about yourself.</h3>
 			</div>
 			<div class="col-lg-3">
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-3 customPad4">
 				<input class="myInput" type="text" name="firstName" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input">
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-3 customPad4">
 				<input  class="myInput" type="text" name="lastName" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
 			</div>
 			<div class="col-lg-3">
 			</div>
 		</div>
-		<div style="padding-top:50px;"class="row">
+		<div style="padding-top:50px;"class="row clientFormRow">
 			<div class="col-lg-3">
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-3 customPad4">
 				<input class="myInput" type="text" name="companyName" placeholder="Company Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Name'" required class="single-input">
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-3 customPad4">
 				<input class="myInput" type="text" name="emailAddress" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required class="single-input">
 			</div>
 			<div class="col-lg-3">
 			</div>
 		</div>
-		<div style="padding-top:50px;"class="row">
+		<div style="padding-top:50px;"class="row clientFormRow">
 			<div class="col-lg-3">
 			</div>
-			<div class="col-lg-6">
+			<div class="col-lg-6 customPad4">
 				<div class="default-select">
 					<select name="fromWhere" id="mySelect" form="formPost">
 						<option value="">How did you hear about this service?</option>
@@ -451,21 +451,21 @@ CSS
 			<div class="col-lg-3">
 			</div>
 		</div>
-		<div  style="padding-top:0px;"class="row">
+		<div  style="padding-top:0px;"class="row clientFormRow">
 			<div class="col-lg-3">
 			</div>
-				<div class="col-lg-6">
+				<div class="col-lg-6 customPad4">
 					<textarea form="formPost"  name="fromWhereOther" id="otherMsg" class="single-textarea" placeholder="From Where?" onfocus="this.placeholder = ''" onblur="this.placeholder = 'From Where?'" required=""></textarea>
 				</div>
 			<div class="col-lg-3">
 			</div>
 		</div>
-		<div style="padding-top:50px;" class="row">
+		<div style="padding-top:50px;" class="row clientFormRow">
 			<div class="col-lg-3">
 			</div>
 			<div class="col-lg-3">
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-3 customPad4">
 				<a id="toForm2" class="genric-btn success">Next</a>
 			</div>
 			<div class="col-lg-3">
@@ -488,7 +488,7 @@ CSS
 				<h3 style="padding-bottom: 50px;color: #FFFFFF;" class="text-center">Tell me about your project.</h3>
 			</div>
 		</div>
-			<div class="row">
+			<div class="row clientFormRow">
 			<div class="col-lg-3">
 			</div>
 			<div class="col-lg-6">
@@ -506,13 +506,13 @@ CSS
 			</div>
 		</div>
 		
-		<div  style="padding-top:50px;"class="row">
+		<div  style="padding-top:50px;"class="row clientFormRow">
 			<div class="col-lg-3">
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-3 customPad4">
 				<input name="duration" onblur="this.placeholder = 'Duration of Project?'"class="myInput months" type="number" required class="single-input" min="1" max="30" placeholder="Duration of project?" onfocus="this.placeholder = ''">
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-3 customPad4">
 				<div class="default-select">
 					<select name="durationUnit" id="mySelect" form="formPost">
 						<option value="Months">Months</option>
@@ -526,46 +526,47 @@ CSS
 			</div>
 		</div>
 
-		<div  style="padding-top:50px;"class="row">
+		<div  style="padding-top:50px;"class="row clientFormRow">
 			<div class="col-lg-3">
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-3 customPad4">
 				<div class="row">
 				<div class="col-lg-10">
 					<h3 style="color: #FFFFFF;padding-left: 20px;">Estimated Budget:</h3>
 				</div>
-				<div class="col-lg-2 ">
-					<h3 style="color: #4cd3e3;font-size: 30px;padding-top: 10px;">$</h3>
+				<div class="col-lg-2 col-sm-0">
+					<h3 class="myBudget" style="color: #4cd3e3;font-size: 30px;padding-top: 10px;">$</h3>
 				</div>
 			</div>
 			</div>
-			<div class="col-lg-3">
+			<!--need to remove the attribute name then add name to the new one.-->
+			<div class="col-lg-3 customPad4 bigBuget">
 				<input style="height: 100%;font-size:30px;" class="myInput budget" type="number" name="budget" min="50" value="50.00" step="1.00">
 			</div>
 			<div class="col-lg-3">
 			</div>
 		</div>
 
-		<div  style="padding-top:50px;"class="row">
+		<div  style="padding-top:50px;"class="row clientFormRow">
 			<div class="col-lg-3">
 			</div>
-				<div class="col-lg-6">
+				<div class="col-lg-6 customPad4">
 					<textarea form="formPost" name="clientMsg" class="single-textarea" placeholder="Anything else you would like to add?" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Anything else you would like to add?'" required=""></textarea>
 				</div>
 			<div class="col-lg-3">
 			</div>
 		</div>
 
-		<div style="padding-top:50px;" class="row">
-			<div class="col-lg-3">
+		<div style="padding-top:50px;" class="row clientFormRow">
+			<div class="col-lg-3 col-sm-0">
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-3 col-sm-6 customPad4">
 				<a id="backToForm1" class="genric-btn success">Back</a>
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-3 col-sm-6 customPad4">
 				<a id="sendMailBtn" class="genric-btn success">Send</a>
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-3  col-sm-0">
 			</div>
 		</div>
 	</form>

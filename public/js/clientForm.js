@@ -2,6 +2,7 @@ window.onload = function() {
 	optionMsg();
 	switchForms();
 	submitForm();
+	makeNavDisappear();
 	if(mySuccess)
 	{
 		success();
@@ -48,11 +49,34 @@ addEvent(window, "resize", function(event) {
 	}
 });
 
+//992
+function makeNavDisappear()
+{
+	var navBar=document.querySelectorAll(".navbar-toggler")[0];
+	var navBtn=document.querySelectorAll(".myDis");
+	if(screen.width<=992)
+	{
+		for(var i=0;i<navBtn.length;++i)
+		{
+			navBtn[i].addEventListener("click",function(){
+				if(screen.width<=992)
+				{
+				console.log(screen.width);
+					navBar.click();
+				}
+				
+			});
+		}
+	}
+	
+	
+		
+}
 
 
-
-
-
+addEvent(window, "resize", function(event) {
+	makeNavDisappear();
+});
 
 
 

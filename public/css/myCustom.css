@@ -115,3 +115,19 @@ height: 150px;
   }
 
 }
+@media only screen and (max-width: 991px) {
+  .clientFormRow{
+    padding-top: 0px!important;
+  }
+  .customPad4{
+    padding-top: 30px!important;
+  }
+  #contact{
+    height: 133%!important;
+  }
+  .myBudget{
+    position: absolute;
+    top:26px;
+  }
+
+}
