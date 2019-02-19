@@ -44,7 +44,7 @@ app.get('/',recaptcha.middleware.render,function (req,res) {
 
 
 app.post('/send',recaptcha.middleware.verify, function (req, res) {
-	res.send(req.body+req.body['g-recaptcha-response']);
+	res.send(req.body['g-recaptcha-response']);
 
 
 	/*var firstName=req.body.firstName;
