@@ -29,10 +29,10 @@ app.get('/',function (req,res) {
 
 
 app.post('/send', function (req, res) {
-	if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null)
+	/*if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null)
 	{
 		return res.json({"responseError" : "Please select captcha first"});
-	}
+	}*/
 
 
 	const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
