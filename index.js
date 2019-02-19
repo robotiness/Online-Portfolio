@@ -33,7 +33,7 @@ app.set("view engine", "ejs");
 
 var success=false;
 
-app.get('/',recaptcha.middleware.render,function (req,res) {
+app.get('/',function (req,res) {
 	res.render('home.ejs',{success:success});
 	success=false;
 });
