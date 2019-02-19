@@ -26,8 +26,10 @@ if(process.env.PORT)
 }
 
 app.use(express.static(__dirname + "/public"));
+/*app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));*/
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended : false}));
 app.set("view engine", "ejs");
 
 
@@ -42,7 +44,7 @@ app.get('/',recaptcha.middleware.render,function (req,res) {
 
 
 app.post('/send',recaptcha.middleware.verify, function (req, res) {
-	res.send(req.body);
+	res.send(req.body+req.body['g-recaptcha-response']);
 
 
 	/*var firstName=req.body.firstName;
