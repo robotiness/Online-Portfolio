@@ -3,9 +3,11 @@ const express=require('express');
 const bodyParser=require('body-parser');
 const mongoose=require('mongoose');
 var nodemailer = require('nodemailer');
+//ADD recapcha
 
 const app=express();
 var PORT=3000;
+const secretKey = "6LfgipIUAAAAABljW3Zah2MB58dWBCu9srkeEljK";
 if(process.env.PORT)
 {
 	PORT=process.env.PORT;
@@ -27,7 +29,25 @@ app.get('/',function (req,res) {
 
 
 app.post('/send', function (req, res) {
-	var firstName=req.body.firstName;
+	if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null)
+	{
+		return res.json({"responseError" : "Please select captcha first"});
+	}
+
+
+	const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
+
+	request(verificationURL,function(error,response,body) {
+		body = JSON.parse(body);
+
+		if(body.success !== undefined && !body.success) {
+			return res.json({"responseError" : "Failed captcha verification"});
+		}
+		res.json({"responseSuccess" : "Sucess"});
+	});
+
+
+	/*var firstName=req.body.firstName;
 	var lastName=req.body.lastName;
 	var companyName=req.body.companyName;
 	var emailAdress=req.body.emailAddress;
@@ -74,15 +94,10 @@ app.post('/send', function (req, res) {
 			console.log("Message was sent.");
 		}
 	});
-	/*transporter.sendMail({
-		from: 'fastudyonlineflashcards@gmail.com',
-		to: 'cmmccoy1996@gmail.com',
-		subject: 'New Client!',
-		text: 'hello world!'
-	});*/
+
 
 	success=true;
-	res.redirect("/");
+	res.redirect("/");*/
 });
 
 
