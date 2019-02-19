@@ -3,6 +3,7 @@ const express=require('express');
 const bodyParser=require('body-parser');
 const mongoose=require('mongoose');
 var nodemailer = require('nodemailer');
+var request=require('request');
 //ADD recapcha
 
 const app=express();
@@ -33,18 +34,17 @@ app.post('/send', function (req, res) {
 	{
 		return res.json({"responseError" : "Please select captcha first"});
 	}*/
-
-
-	const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
-
-	request(verificationURL,function(error,response,body) {
-		body = JSON.parse(body);
-
-		if(body.success !== undefined && !body.success) {
-			return res.json({"responseError" : "Failed captcha verification"});
-		}
-		res.json({"responseSuccess" : "Sucess"});
-	});
+	var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret="+ secret_key +"&response=" +response;
+            // Hitting GET request to the URL, Google will respond with success or error scenario.
+    request(verificationUrl,function(error,response,body) {
+    body = JSON.parse(body);
+    // Success will be true or false depending upon captcha validation.
+        if(body.success !== undefined && !body.success) {
+            res.send({"responseCode" : 1,"responseDesc" : "Failed captcha verification"});
+        }else{
+            res.send({"responseCode" : 0,"responseDesc" : "Sucess"});
+        }
+    });
 
 
 	/*var firstName=req.body.firstName;
