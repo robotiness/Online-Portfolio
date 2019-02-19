@@ -29,13 +29,13 @@ app.get('/',function (req,res) {
 
 
 app.post('/send', function (req, res) {
-	if(req.body.gRecapcha === undefined || req.body.gRecapcha === '' || req.body.gRecapcha === null)
+	if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null)
 	{
 		return res.json({"responseError" : "Please select captcha first"});
 	}
 
 
-	const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body.gRecapcha + "&remoteip=" + req.connection.remoteAddress;
+	const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
 
 	request(verificationURL,function(error,response,body) {
 		body = JSON.parse(body);
