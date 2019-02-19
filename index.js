@@ -6,6 +6,7 @@ var nodemailer = require('nodemailer');
 var request=require('request');
 //var reCAPTCHA = require('recaptcha2');
 var Recaptcha = require('express-recaptcha').Recaptcha;
+//  git add . && git commit -m "t" && git push heroku master
  
 /*var recaptcha = new reCAPTCHA({
   siteKey: '6LfgipIUAAAAAMguDwZkJwHA66qm-iJyywLcYa5m', // retrieved during setup
@@ -41,13 +42,7 @@ app.get('/',recaptcha.middleware.render,function (req,res) {
 
 
 app.post('/send',recaptcha.middleware.verify, function (req, res) {
-	if (!req.recaptcha.error) {
-	    // success code
-	    res.send("success");
-	  } else {
-	    // error code
-	    res.send(req.recaptcha.error);
-	  }
+	res.send(req.body['g-recaptcha-response']);
 
 
 	/*var firstName=req.body.firstName;
