@@ -15,7 +15,7 @@ var Recaptcha = require('express-recaptcha').Recaptcha;
 
 
  
-var recaptcha = new Recaptcha('6LfgipIUAAAAAMguDwZkJwHA66qm-iJyywLcYa5m','6LfgipIUAAAAABljW3Zah2MB58dWBCu9srkeEljK');
+
 
 const app=express();
 var PORT=3000;
@@ -26,10 +26,8 @@ if(process.env.PORT)
 }
 
 app.use(express.static(__dirname + "/public"));
-/*app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));*/
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended : false}));
 app.set("view engine", "ejs");
 
 
@@ -43,9 +41,20 @@ app.get('/',recaptcha.middleware.render,function (req,res) {
 
 
 
-app.post('/send',recaptcha.middleware.verify, function (req, res) {
-	res.send(req.body['g-recaptcha-response']);
-
+app.post('/send',function (req, res) {
+	if(req.body === undefined || req.body === '' || req.body === null)
+  {
+    return res.json({"responseError" : "captcha error"});
+  }
+  const secretKey = "6LfgipIUAAAAABljW3Zah2MB58dWBCu9srkeEljK";
+  const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body + "&remoteip=" + req.connection.remoteAddress;
+  request(verificationURL,function(error,response,body) {
+    body = JSON.parse(body);
+    if(body.success !== undefined && !body.success) {
+      return res.json({"responseError" : "Failed captcha verification"});
+    }
+    res.json({"responseSuccess" : "Sucess"});
+  });
 
 	/*var firstName=req.body.firstName;
 	var lastName=req.body.lastName;
