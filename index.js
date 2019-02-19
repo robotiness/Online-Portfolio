@@ -44,16 +44,16 @@ app.get('/',function (req,res) {
 app.post('/send',function (req, res) {
 	if(req.body === undefined || req.body === '' || req.body === null)
   {
-    return res.json({"responseError" : "captcha error"});
+    return res.send({"responseError" : "captcha error"});
   }
   const secretKey = "6LfgipIUAAAAABljW3Zah2MB58dWBCu9srkeEljK";
   const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body + "&remoteip=" + req.connection.remoteAddress;
   request(verificationURL,function(error,response,body) {
     body = JSON.parse(body);
     if(body.success !== undefined && !body.success) {
-      return res.json({"responseError" : "Failed captcha verification"});
+      return res.send({"responseError" : "Failed captcha verification"});
     }
-    res.json({"responseSuccess" : "Sucess"});
+    res.send({"responseSuccess" : "Sucess"});
   });
 
 	/*var firstName=req.body.firstName;
