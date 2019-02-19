@@ -4,19 +4,24 @@ const bodyParser=require('body-parser');
 const mongoose=require('mongoose');
 var nodemailer = require('nodemailer');
 var request=require('request');
+var reCAPTCHA = require('recaptcha2');
+ 
+var recaptcha = new reCAPTCHA({
+  siteKey: '6LfgipIUAAAAAMguDwZkJwHA66qm-iJyywLcYa5m', // retrieved during setup
+  secretKey: '6LfgipIUAAAAABljW3Zah2MB58dWBCu9srkeEljK' // retrieved during setup
+});
 //ADD recapcha
 
 const app=express();
 var PORT=3000;
-const secretKey = "6LfgipIUAAAAABljW3Zah2MB58dWBCu9srkeEljK";
+
 if(process.env.PORT)
 {
 	PORT=process.env.PORT;
 }
 
 app.use(express.static(__dirname + "/public"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended : false}));
+app.use(bodyParser.urlencoded({extended : true}));
 app.set("view engine", "ejs");
 
 
@@ -31,22 +36,18 @@ app.get('/',function (req,res) {
 
 
 app.post('/send', function (req, res) {
-	if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
-		return res.json({"responseCode" : 1,"responseDesc" : "Please select captcha"});
-	}
-	// Put your secret key here.
-	var secretKey = "--paste your secret key here--";
-	// req.connection.remoteAddress will provide IP address of connected user.
-	var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
-	// Hitting GET request to the URL, Google will respond with success or error scenario.
-	request(verificationUrl,function(error,response,body) {
-		body = JSON.parse(body);
-		// Success will be true or false depending upon captcha validation.
-		if(body.success !== undefined && !body.success) {
-			return res.json({"responseCode" : 1,"responseDesc" : "Failed captcha verification"});
-		}
-	res.json({"responseCode" : 0,"responseDesc" : "Sucess"});
-	});
+	recaptcha.validateRequest(req)
+    .then(function(){
+      // validated and secure
+      res.json({formSubmit:true})
+    })
+    .catch(function(errorCodes){
+      // invalid
+      res.json({
+        formSubmit: false,
+        errors: recaptcha.translateErrors(errorCodes) // translate error codes to human readable text
+      });
+    });
 
 
 
