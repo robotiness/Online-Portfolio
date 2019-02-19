@@ -119,6 +119,7 @@ function submitForm()
 {
 
 	var submitFormBtn=document.getElementById('sendMailBtn');
+	var response = grecaptcha.getResponse();
 	submitFormBtn.addEventListener("click",function(){
 		var form=document.getElementById("formPost");
 		var missFields=[];
@@ -164,7 +165,7 @@ function submitForm()
 		{
 			missFields.push("Missing where did hear about this service (from where)\n");
 		}
-		if(missFields.length<1)
+		if(missFields.length<1 && response.length!=0)
 		{
 			form.submit();
 		}
