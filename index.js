@@ -42,7 +42,7 @@ app.get('/',function (req,res) {
 
 
 app.post('/send',function (req, res) {
-	if(req.body === undefined || req.body === '' || req.body === null)
+	/*if(req.body === undefined || req.body === '' || req.body === null)
   {
     return res.send({"responseError" : "captcha error"});
   }
@@ -54,9 +54,9 @@ app.post('/send',function (req, res) {
       return res.send(body);
     }
     res.send({"responseSuccess" : "Sucess"});
-  });
+  });*/
 
-	/*var firstName=req.body.firstName;
+	var firstName=req.body.firstName;
 	var lastName=req.body.lastName;
 	var companyName=req.body.companyName;
 	var emailAdress=req.body.emailAddress;
@@ -106,7 +106,7 @@ app.post('/send',function (req, res) {
 
 
 	success=true;
-	res.redirect("/");*/
+	res.redirect("/");
 });
 
 
