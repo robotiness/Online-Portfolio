@@ -118,13 +118,20 @@ function switchForms()
 function submitForm()
 {
 
+
 	var submitFormBtn=document.getElementById('sendMailBtn');
 	//var response = grecaptcha.getResponse();
 	submitFormBtn.addEventListener("click",function(){
 		var form=document.getElementById("formPost");
 		var missFields=[];
 		var values=getValues();
-		console.log(values);
+		var captcha = document.querySelector('#g-recaptcha-response').value;
+		console.log("cap");
+		console.log(captcha);
+		if(captcha=="")
+		{
+			missFields.push("Missing recaptcha\n");
+		}
 		if(values.firstName=="")
 		{
 			missFields.push("Missing First Name\n");
@@ -168,6 +175,10 @@ function submitForm()
 		///if(missFields.length<1 && response.length!=0)
 		if(missFields.length<1)
 		{
+			var form=document.getElementById("formPost");
+			var recaptchaInput=document.getElementsByName("captcha")[0];
+			recaptchaInput.value=captcha;
+
 			form.submit();
 		}
 		else{
