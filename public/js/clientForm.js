@@ -36,9 +36,17 @@ var addEvent = function(object, type, callback) {
 };
 
 addEvent(window, "resize", function(event) {
+	var w = window,
+	    d = document,
+	    e = d.documentElement,
+	    g = d.getElementsByTagName('body')[0],
+	    x = w.innerWidth || e.clientWidth || g.clientWidth,
+	    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+	//alert(x + ' × ' + y);
+	//alert(screen.width);
 	var bigScreen=document.querySelectorAll('.myBigScreen')[0];
 	var smallScreen=document.querySelectorAll('.mySmallScreen')[0];
-	if(screen.width<=997)
+	if(x<=997)
 	{
 		bigScreen.style.display="none";
 		smallScreen.style.display="block"
