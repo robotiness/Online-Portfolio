@@ -6,7 +6,7 @@ var nodemailer = require('nodemailer');
 var request=require('request');
 //var reCAPTCHA = require('recaptcha2');
 var Recaptcha = require('express-recaptcha').Recaptcha;
-//  git add . && git commit -m "t" && git push heroku master
+//  git add . && git commit -m "t" && git push heroku masters
 const app=express();
 var PORT=3000;
 
