@@ -1,29 +1,31 @@
 window.onload = function() {
 	optionMsg();
-	switchForms();
-	submitForm();
+	// switchForms();
+	// submitForm();
 	makeNavDisappear();
-	if(mySuccess)
-	{
-		success();
-	}
-	var bigScreen=document.querySelectorAll('.myBigScreen')[0];
-	var smallScreen=document.querySelectorAll('.mySmallScreen')[0];
-	if(screen.width<=997)
-	{
-		bigScreen.style.display="none";
-		smallScreen.style.display="block"
-		smallScreen.id="project";
-		bigScreen.id="notProject";
-	}
-	else{
-		bigScreen.style.display="block";
-		smallScreen.style.display="none";
-		smallScreen.id="notProject";
-		bigScreen.id="project";
-	}
-}
+	proj_img_overlay();
 
+// 	if(mySuccess)
+// 	{
+// 		success();
+// 	}
+// 	var bigScreen=document.querySelectorAll('.myBigScreen')[0];
+// 	var smallScreen=document.querySelectorAll('.mySmallScreen')[0];
+// 	if(screen.width<=997)
+// 	{
+// 		bigScreen.style.display="none";
+// 		smallScreen.style.display="block"
+// 		smallScreen.id="project";
+// 		bigScreen.id="notProject";
+// 	}
+// 	else{
+// 		bigScreen.style.display="block";
+// 		smallScreen.style.display="none";
+// 		smallScreen.id="notProject";
+// 		bigScreen.id="project";
+// 	}
+// }
+//
 var addEvent = function(object, type, callback) {
     if (object == null || typeof(object) == 'undefined') return;
     if (object.addEventListener) {
@@ -34,30 +36,52 @@ var addEvent = function(object, type, callback) {
         object["on"+type] = callback;
     }
 };
+//
+// addEvent(window, "resize", function(event) {
+// 	var w = window,
+// 	    d = document,
+// 	    e = d.documentElement,
+// 	    g = d.getElementsByTagName('body')[0],
+// 	    x = w.innerWidth || e.clientWidth || g.clientWidth,
+// 	    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+// 	//alert(x + ' × ' + y);
+// 	//alert(screen.width);
+// 	var bigScreen=document.querySelectorAll('.myBigScreen')[0];
+// 	var smallScreen=document.querySelectorAll('.mySmallScreen')[0];
+// 	if(x<=997)
+// 	{
+// 		bigScreen.style.display="none";
+// 		smallScreen.style.display="block"
+// 	}
+// 	else{
+// 		bigScreen.style.display="block";
+// 		smallScreen.style.display="none";
+// 	}
+// });
 
-addEvent(window, "resize", function(event) {
-	var w = window,
-	    d = document,
-	    e = d.documentElement,
-	    g = d.getElementsByTagName('body')[0],
-	    x = w.innerWidth || e.clientWidth || g.clientWidth,
-	    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
-	//alert(x + ' × ' + y);
-	//alert(screen.width);
-	var bigScreen=document.querySelectorAll('.myBigScreen')[0];
-	var smallScreen=document.querySelectorAll('.mySmallScreen')[0];
-	if(x<=997)
-	{
-		bigScreen.style.display="none";
-		smallScreen.style.display="block"
-	}
-	else{
-		bigScreen.style.display="block";
-		smallScreen.style.display="none";
-	}
-});
+function proj_img_overlay()
+{
+	var projectImg = document.getElementsByClassName('img-container');
+	for(var i=0;i<projectImg.length;++i){
+		projectImg[i].addEventListener('mouseenter',function(){
+			for(var ix=0;ix<this.childNodes.length;++ix){
+				if(this.childNodes[ix].className &&
+						this.childNodes[ix].className.includes("centered")){
+						this.childNodes[ix].style.display = 'block';
+				}
+			}
+		});
 
-//992
+		projectImg[i].addEventListener('mouseleave',function(){
+			for(var ix=0;ix<this.childNodes.length;++ix){
+				if(this.childNodes[ix].className &&
+						this.childNodes[ix].className.includes("centered")){
+						this.childNodes[ix].style.display = 'none';
+				}
+			}
+		});
+	}
+}
 function makeNavDisappear()
 {
 	var navBar=document.querySelectorAll(".navbar-toggler")[0];
@@ -72,22 +96,19 @@ function makeNavDisappear()
 				console.log(screen.width);
 					navBar.click();
 				}
-				
+
 			});
 		}
 	}
-	
-	
-		
+
+
+
 }
 
 
 addEvent(window, "resize", function(event) {
 	makeNavDisappear();
 });
-
-
-
 
 function optionMsg()
 {
@@ -105,6 +126,7 @@ function optionMsg()
 		}
 	});
 }
+
 function switchForms()
 {
 	var toForm2=document.getElementById('toForm2');
@@ -123,10 +145,9 @@ function switchForms()
 		form2.style.display="none";
 	});
 }
+
 function submitForm()
 {
-
-
 	var submitFormBtn=document.getElementById('sendMailBtn');
 	//var response = grecaptcha.getResponse();
 	submitFormBtn.addEventListener("click",function(){
@@ -199,6 +220,7 @@ function submitForm()
 		}
 	});
 }
+
 function getValues()
 {
     var elements = document.getElementById("formPost").elements;
@@ -210,6 +232,7 @@ function getValues()
 
     return obj;
 }
+
 function success()
 {
 	var success=document.getElementById("success");
@@ -241,4 +264,5 @@ function success()
 		success.classList.remove('myHidden');
 		form1.classList.add()
 	}, 3500);*/
+}
 }

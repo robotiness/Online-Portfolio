@@ -16,7 +16,7 @@
 .myInput::placeholder{
 	color: #FFFFFF;
 }
-html, 
+html,
 body {
     height: 100%;
 }
@@ -130,4 +130,24 @@ height: 150px;
     top:26px;
   }
 
+}
+.img-container{
+	position: relative;
+	text-align: center;
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+	width: 100%;
+}
+.img-container:hover>img{
+	opacity:0.5;
+	filter: brightness(25%);
+}
+.project-btn:hover{
+	background: #8193ff;
+	color:#fff!important;
+	border: 1px solid #fff!important;
 }
