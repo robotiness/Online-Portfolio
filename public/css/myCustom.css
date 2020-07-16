@@ -151,3 +151,16 @@ height: 150px;
 	color:#fff!important;
 	border: 1px solid #fff!important;
 }
+.pb-200{
+	padding-bottom: 200px;
+}
+.banner-left span {
+    text-transform: uppercase;
+    font-weight: 700;
+		font-size:36px;
+}
+.banner-left h1{
+font-size: 36px;
+font-weight: 100;
+margin-bottom: 10px!important;
+}

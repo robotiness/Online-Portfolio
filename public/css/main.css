@@ -4,7 +4,7 @@
 /* Mobile Layout: 320px */
 /* Wide Mobile Layout: 480px */
 /* =================================== */
-/*  Basic Style 
+/*  Basic Style
 /* =================================== */
 ::-moz-selection {
   /* Code for Firefox */
@@ -2198,7 +2198,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #fff;
   padding: 8px 40px;
   font-weight: 600;
-  color: #000;
+  color: #000!important;
   box-shadow: 0px 20px 20px 0px rgba(0, 0, 0, 0.1);
   border: 1px solid transparent;
   border-radius: 20px;
@@ -2347,8 +2347,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .single-project img:hover {
-  cursor: pointer;
-  transform: scale(0.9);
+  /* cursor: pointer;
+  transform: scale(0.9); */
 }
 
 @media (max-width: 800px) {
