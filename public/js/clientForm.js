@@ -1,30 +1,33 @@
 window.onload = function() {
+	var width = window.innerWidth;
 	optionMsg();
-	// switchForms();
-	// submitForm();
+	submitForm();
 	makeNavDisappear();
 	proj_img_overlay();
+	project_resize();
+	removePic(width);
+	removeProject(width);
 
 // 	if(mySuccess)
 // 	{
 // 		success();
 // 	}
-// 	var bigScreen=document.querySelectorAll('.myBigScreen')[0];
-// 	var smallScreen=document.querySelectorAll('.mySmallScreen')[0];
-// 	if(screen.width<=997)
-// 	{
-// 		bigScreen.style.display="none";
-// 		smallScreen.style.display="block"
-// 		smallScreen.id="project";
-// 		bigScreen.id="notProject";
-// 	}
-// 	else{
-// 		bigScreen.style.display="block";
-// 		smallScreen.style.display="none";
-// 		smallScreen.id="notProject";
-// 		bigScreen.id="project";
-// 	}
-// }
+	// var bigScreen=document.querySelectorAll('.myBigScreen')[0];
+	// var smallScreen=document.querySelectorAll('.mySmallScreen')[0];
+	// if(screen.width<=997)
+	// {
+	// 	bigScreen.style.display="none";
+	// 	smallScreen.style.display="block"
+	// 	smallScreen.id="project";
+	// 	bigScreen.id="notProject";
+	// }
+	// else{
+	// 	bigScreen.style.display="block";
+	// 	smallScreen.style.display="none";
+	// 	smallScreen.id="notProject";
+	// 	bigScreen.id="project";
+	// }
+}
 //
 var addEvent = function(object, type, callback) {
     if (object == null || typeof(object) == 'undefined') return;
@@ -37,27 +40,38 @@ var addEvent = function(object, type, callback) {
     }
 };
 //
-// addEvent(window, "resize", function(event) {
-// 	var w = window,
-// 	    d = document,
-// 	    e = d.documentElement,
-// 	    g = d.getElementsByTagName('body')[0],
-// 	    x = w.innerWidth || e.clientWidth || g.clientWidth,
-// 	    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
-// 	//alert(x + ' × ' + y);
-// 	//alert(screen.width);
-// 	var bigScreen=document.querySelectorAll('.myBigScreen')[0];
-// 	var smallScreen=document.querySelectorAll('.mySmallScreen')[0];
-// 	if(x<=997)
-// 	{
-// 		bigScreen.style.display="none";
-// 		smallScreen.style.display="block"
-// 	}
-// 	else{
-// 		bigScreen.style.display="block";
-// 		smallScreen.style.display="none";
-// 	}
-// });
+function removePic(x){
+	var myPic = document.getElementsByClassName('myPic')[0];
+	if(x<992){
+		myPic.style.display = "none";
+	}else if(myPic.style.display=="none"){
+		myPic.style.display = "block";
+	}
+}
+function removeProject(x){
+	var bigScreen=document.querySelectorAll('.myBigScreen')[0];
+	// var smallScreen=document.querySelectorAll('.mySmallScreen')[0];
+	if(x<992){
+		bigScreen.style.display = "none";
+	}else{
+		bigScreen.style.display = "block"
+	}
+}
+function project_resize(){
+	addEvent(window, "resize", function(event) {
+		var w = window,
+		    d = document,
+		    e = d.documentElement,
+		    g = d.getElementsByTagName('body')[0],
+		    x = w.innerWidth || e.clientWidth || g.clientWidth,
+		    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+		//alert(x + ' × ' + y);
+		//alert(screen.width);
+		removeProject(x);
+		removePic(x);
+
+	});
+}
 
 function proj_img_overlay()
 {
@@ -155,8 +169,14 @@ function submitForm()
 		var missFields=[];
 		var values=getValues();
 		var captcha = document.querySelector('#g-recaptcha-response').value;
-		console.log("cap");
-		console.log(captcha);
+		if(values.subject=="")
+		{
+			missFields.push("Missing Subject\n");
+		}
+		if(values.message=="")
+		{
+			missFields.push("Missing Message\n");
+		}
 		if(captcha=="")
 		{
 			missFields.push("Missing recaptcha\n");
@@ -264,5 +284,4 @@ function success()
 		success.classList.remove('myHidden');
 		form1.classList.add()
 	}, 3500);*/
-}
 }

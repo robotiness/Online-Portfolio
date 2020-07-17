@@ -22,6 +22,7 @@ app.set("view engine", "ejs");
 var success = false;
 
 app.get("/", function (req, res) {
+  wake_up_app();
   res.render("home.ejs", { success: success });
   success = false;
 });
@@ -117,6 +118,14 @@ app.post("/send", function (req, res) {
     }
   });
 });
+
+function wake_up_app(){
+  request('https://cash-app-1.herokuapp.com/', function (error, response, body) {
+    console.error('error:', error); // Print the error if one occurred
+    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    console.log('body:', body); // Print the HTML for the Google homepage.
+  });
+}
 
 app.listen(PORT, function () {
   console.log("Listening on Port:" + PORT);
