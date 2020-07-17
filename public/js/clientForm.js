@@ -7,28 +7,11 @@ window.onload = function() {
 	project_resize();
 	removePic(width);
 	removeProject(width);
-
-// 	if(mySuccess)
-// 	{
-// 		success();
-// 	}
-	// var bigScreen=document.querySelectorAll('.myBigScreen')[0];
-	// var smallScreen=document.querySelectorAll('.mySmallScreen')[0];
-	// if(screen.width<=997)
-	// {
-	// 	bigScreen.style.display="none";
-	// 	smallScreen.style.display="block"
-	// 	smallScreen.id="project";
-	// 	bigScreen.id="notProject";
-	// }
-	// else{
-	// 	bigScreen.style.display="block";
-	// 	smallScreen.style.display="none";
-	// 	smallScreen.id="notProject";
-	// 	bigScreen.id="project";
-	// }
+	if(success)
+	{
+		successFunction();
+	}
 }
-//
 var addEvent = function(object, type, callback) {
     if (object == null || typeof(object) == 'undefined') return;
     if (object.addEventListener) {
@@ -253,13 +236,13 @@ function getValues()
     return obj;
 }
 
-function success()
+function successFunction()
 {
 	var success=document.getElementById("success");
 	var form1=document.getElementById("form1");
-	var form2=document.getElementById("form2");
+	// var form2=document.getElementById("form2");
 	form1.style.display="none";
-	form2.style.display="none";
+	// form2.style.display="none";
 	success.style.display="block";
 	if(screen.width<=600)
 	{
@@ -279,9 +262,4 @@ function success()
 		success.style.display="none";
 		form1.style.display="block";
 	}, 5000);
-	/*setTimeout(function(){
-		success.style.display="none";
-		success.classList.remove('myHidden');
-		form1.classList.add()
-	}, 3500);*/
 }

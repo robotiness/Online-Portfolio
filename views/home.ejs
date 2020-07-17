@@ -527,7 +527,7 @@ A Wordpress site that uses sends user email updates when the their enter their b
 </section> -->
 	<!-- End project Area -->
 	<script>
-		// var mySuccess = < %= success % > ;
+		var success = <%= success %> ;
 	</script>
 
 	<section id="contact" class="pt-50 pb-50" style="background-image:
@@ -603,10 +603,6 @@ A Wordpress site that uses sends user email updates when the their enter their b
 					<div class="col-lg-3">
 					</div>
 					<div class="col-lg-6 customPad4">
-						<!-- <input class="myInput" type="text" name="subject"
-placeholder="Subject" onfocus="this.placeholder = ''"
-onblur="this.placeholder = 'Subject'"
-required class="single-input"> -->
 						<textarea form="formPost" style="height:40px" name="subject" id="subject" class="single-textarea" placeholder="Subject:" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject:?'" required=""></textarea>
 					</div>
 				</div>
@@ -622,7 +618,7 @@ required class="single-input"> -->
 					<div class="col-lg-3">
 					</div>
 					<div class="col-lg-6 customPad4">
-						<div class="g-recaptcha" data-sitekey="6LfgipIUAAAAAMguDwZkJwHA66qm-iJyywLcYa5m"></div>
+						<div class="g-recaptcha" data-sitekey="<%=recaptchaClient%>"></div>
 					</div>
 					<div class="col-lg-3">
 					</div>
