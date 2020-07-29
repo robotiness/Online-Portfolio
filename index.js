@@ -9,7 +9,6 @@ const recaptchaClient = process.env.recaptchaClient || require("./config/secret"
 const emailUsername = process.env.emailUsername || require("./config/secret").emailUsername;
 const emailPassword = process.env.emailPassword || require("./config/secret").emailPassword;
 const sendTo = process.env.sendTo || require("./config/secret").sendTo;
-const Recaptcha = require("express-recaptcha").Recaptcha;
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -88,9 +87,9 @@ app.post("/send", function(req, res) {
       );
 
       success = true;
-      res.redirect("/");
+      res.redirect("/#contact");
     } else {
-      res.redirect("/");
+      res.redirect("/#contact");
     }
   });
 });
