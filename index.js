@@ -4,13 +4,24 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 const request = require("request");
+
 const recaptchaSecret = process.env.recaptchaSecret || require("./config/secret").recaptchaSecret;
 const recaptchaClient = process.env.recaptchaClient || require("./config/secret").recaptchaClient;
 const emailUsername = process.env.emailUsername || require("./config/secret").emailUsername;
 const emailPassword = process.env.emailPassword || require("./config/secret").emailPassword;
 const sendTo = process.env.sendTo || require("./config/secret").sendTo;
+
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+console.log('recapchaCient');
+console.log(recaptchaClient);
+console.log('recapchaSecret');
+console.log(recaptchaSecret);
+console.log('username');
+console.log(emailUsername);
+console.log('password');
+console.log(emailPassword);
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({
