@@ -45,51 +45,50 @@ app.post("/send", function(req, res) {
 
   request(verifyUrl, (err, response, body) => {
     body = JSON.parse(body);
-
-    if (body.success) {
-      var firstName = req.body.firstName;
-      var lastName = req.body.lastName;
-      var companyName = req.body.companyName;
-      var emailAdress = req.body.emailAddress;
-      var fromWhere = req.body.fromWhere || req.body.fromWhereOther;
-      var subject = req.body.subject;
-      var message = req.body.message;
-
-      console.log(req.body);
-
-      var transporter = nodemailer.createTransport({
-        service: "Gmail",
-        auth: {
-          user: emailUsername,
-          pass: emailPassword,
-        },
-      });
-
-      transporter.sendMail({
-          from: emailAdress,
-          to: sendTo,
-          subject: subject,
-          text:
-          "Name: " + firstName + " " + lastName + "\n" +
-          "Company: " + companyName + "\n" +
-          "Email: " + emailAdress + "\n" +
-          "From Where: " + fromWhere + "\n" +
-          "Message: " + message
-
-        },
-        function(error, response) {
-          if (error) {
-            console.log(error);
-          } else {
-            console.log("Message was sent.");
+    if(err){
+      console.log(err);
+    }else if(body.success){
+        var firstName = req.body.firstName;
+        var lastName = req.body.lastName;
+        var companyName = req.body.companyName;
+        var emailAdress = req.body.emailAddress;
+        var fromWhere = req.body.fromWhere || req.body.fromWhereOther;
+        var subject = req.body.subject;
+        var message = req.body.message;
+  
+        var transporter = nodemailer.createTransport({
+          service: "Gmail",
+          auth: {
+            user: emailUsername,
+            pass: emailPassword,
+          },
+        });
+  
+        transporter.sendMail({
+            from: emailAdress,
+            to: sendTo,
+            subject: subject,
+            text:
+            "Name: " + firstName + " " + lastName + "\n" +
+            "Company: " + companyName + "\n" +
+            "Email: " + emailAdress + "\n" +
+            "From Where: " + fromWhere + "\n" +
+            "Message: " + message
+  
+          },
+          function(error, response) {
+            if (error) {
+              console.log(error);
+              res.send("Error occured.")
+            } else {
+              success = true;
+              console.log("Message was sent.");
+              res.redirect("/");
+            }
           }
-        }
-      );
-
-      success = true;
-      res.redirect("/#contact");
-    } else {
-      res.redirect("/#contact");
+        );
+    }else{
+      res.send("Error occured.")
     }
   });
 });
