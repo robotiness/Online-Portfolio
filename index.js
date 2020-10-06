@@ -79,7 +79,7 @@ app.post("/send", function(req, res) {
           function(error, response) {
             if (error) {
               console.log(error);
-              res.send("Error occured.")
+              res.send("Error occured. Please send email to " + sendTo);
             } else {
               success = true;
               console.log("Message was sent.");
@@ -88,7 +88,7 @@ app.post("/send", function(req, res) {
           }
         );
     }else{
-      res.send("Error occured.")
+      res.send("Error occured. Please send email to " + sendTo);
     }
   });
 });

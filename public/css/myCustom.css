@@ -164,3 +164,12 @@ font-size: 36px;
 font-weight: 100;
 margin-bottom: 10px!important;
 }
+@media only screen and (max-width: 992px) {
+  .my-name {
+    visibility: hidden;
+  }
+}
+.my-ul > li{
+  margin-bottom: 20px;
+  /* text-align: left; */
+}
