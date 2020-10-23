@@ -68,7 +68,7 @@ app.post("/send", function(req, res) {
         var message = req.body.message;
   
         var transporter = nodemailer.createTransport({
-          service: "Gmail",
+          service: "AOL",
           auth: {
             user: emailUsername,
             pass: emailPassword,
