@@ -566,7 +566,9 @@ View Source Code<i style="margin-left:10px" class="fab fa-github"></i>
 					<div class="col-lg-3">
 					</div>
 					<div class="col-lg-6 customPad4">
-						<div class="g-recaptcha" data-sitekey="<%=recaptchaClient%>"></div>
+						<input class="myInput" type="text" name="challenge" placeholder="What color is the sun?"
+							onfocus="this.placeholder = ''" onblur="this.placeholder = 'What color is the sun?'" required
+							class="single-input">
 					</div>
 					<div class="col-lg-3">
 					</div>
@@ -583,7 +585,7 @@ View Source Code<i style="margin-left:10px" class="fab fa-github"></i>
 		</div>
 	</section>
 	<script src="js/css3-animate-it.js"></script>
-	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
 	<script src="js/clientForm.js"></script>
 	<script src="js/bootstrap.bundle.min.js"></script>
 

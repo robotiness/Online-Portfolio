@@ -1,27 +1,15 @@
 const http = require("http");
 const express = require("express");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 const request = require("request");
 
-const recaptchaSecret = process.env.recaptchaSecret || require("./config/secret").recaptchaSecret;
-const recaptchaClient = process.env.recaptchaClient || require("./config/secret").recaptchaClient;
 const emailUsername = process.env.emailUsername || require("./config/secret").emailUsername;
 const emailPassword = process.env.emailPassword || require("./config/secret").emailPassword;
 const sendTo = process.env.sendTo || require("./config/secret").sendTo;
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-console.log('recapchaCient');
-console.log(recaptchaClient);
-console.log('recapchaSecret');
-console.log(recaptchaSecret);
-console.log('username');
-console.log(emailUsername);
-console.log('password');
-console.log(emailPassword);
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({
@@ -31,81 +19,73 @@ app.use(bodyParser.json());
 app.set("view engine", "ejs");
 
 var success = false;
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   wake_up_app();
   res.render("home.ejs", {
-    success: success,
-    recaptchaClient:recaptchaClient
+    success: success
   });
   success = false;
 });
 
-app.post("/send", function(req, res) {
-  if (
-    req.body.captcha === undefined ||
-    req.body.captcha === "" ||
-    req.body.captcha === null
-  ) {
-    return res.json({
-      success: false,
-      msg: "Please select captcha"
-    });
-  }
-
-  const verifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${recaptchaSecret}&response=${req.body.captcha}&remoteip=${req.connection.remoteAddress}`;
-
-  request(verifyUrl, (err, response, body) => {
-    body = JSON.parse(body);
-    if(err){
-      console.log(err);
-    }else if(body.success){
+app.post("/send", function (req, res) {
+      var challenge = req.body.challenge;
+      if(challenge.toLowerCase() != 'yellow'){
+        res.redirect('/');
+      }else{
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
         var companyName = req.body.companyName;
-        var emailAdress = req.body.emailAddress;
+        var emailAddress = req.body.emailAddress;
         var fromWhere = req.body.fromWhere || req.body.fromWhereOther;
         var subject = req.body.subject;
-        var message = req.body.message;
+        var clientMessage = req.body.message;
   
-        var transporter = nodemailer.createTransport({
-          service: "AOL",
-          auth: {
-            user: emailUsername,
-            pass: emailPassword,
-          },
-        });
+        nodemailer.createTestAccount((err, account) => {
+          if (err) {
+            console.log(err);
+            console.log('1')
+            res.send("Error occured. Please send email to " + sendTo);
+          } else {
+            const transporter = nodemailer.createTransport({
+              service: "AOL",
+              auth: {
+                user: emailUsername,
+                pass: emailPassword,
+              },
+            });
+            const message = `
+            <p>Name:  `+firstName + lastName+`</p>
+            <p>Company Name:  `+companyName+`</p>
+            <p>Email:  `+emailAddress+`</p>
+            <p>From Where:  `+fromWhere+`</p>
+            <p>Message:   `+clientMessage+`</p>`;
   
-        transporter.sendMail({
-            from: emailAdress,
-            to: sendTo,
-            subject: subject,
-            text:
-            "Name: " + firstName + " " + lastName + "\n" +
-            "Company: " + companyName + "\n" +
-            "Email: " + emailAdress + "\n" +
-            "From Where: " + fromWhere + "\n" +
-            "Message: " + message
+            transporter.sendMail({
+              from:emailUsername,
+              to: sendTo,
+              subject: subject,
+              html:message
   
-          },
-          function(error, response) {
-            if (error) {
-              console.log(error);
-              res.send("Error occured. Please send email to " + sendTo);
-            } else {
-              success = true;
-              console.log("Message was sent.");
-              res.redirect("/");
-            }
+            },
+              function (error, response) {
+                if (error) {
+                  console.log(error);
+                  console.log('2')
+                  res.send("Error occured. Please send email to " + sendTo);
+                } else {
+                  success = true;
+                  console.log("Message was sent.");
+                  res.redirect("/");
+                }
+              }
+            );
           }
-        );
-    }else{
-      res.send("Error occured. Please send email to " + sendTo);
-    }
-  });
+        });
+      }
 });
 
 function wake_up_app() {
-  request('https://cash-app-1.herokuapp.com/', function(error, response, body) {
+  request('https://cash-app-1.herokuapp.com/', function (error, response, body) {
     if (error) {
       console.log(error)
     } else if (!body) {
@@ -116,6 +96,6 @@ function wake_up_app() {
   });
 }
 
-app.listen(PORT, function() {
-  console.log("Listening on Port:" + PORT);
+app.listen(PORT, function () {
+  console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nListening on Port:" + PORT);
 });
