@@ -28,60 +28,52 @@ app.get("/", function (req, res) {
 });
 
 app.post("/send", function (req, res) {
-      var challenge = req.body.challenge;
-      if(challenge.toLowerCase() != 'yellow'){
-        res.redirect('/');
-      }else{
-        var firstName = req.body.firstName;
-        var lastName = req.body.lastName;
-        var companyName = req.body.companyName;
-        var emailAddress = req.body.emailAddress;
-        var fromWhere = req.body.fromWhere || req.body.fromWhereOther;
-        var subject = req.body.subject;
-        var clientMessage = req.body.message;
-  
-        nodemailer.createTestAccount((err, account) => {
-          if (err) {
-            console.log(err);
-            console.log('1')
-            res.send("Error occured. Please send email to " + sendTo);
-          } else {
-            const transporter = nodemailer.createTransport({
-              service: "AOL",
-              auth: {
-                user: emailUsername,
-                pass: emailPassword,
-              },
-            });
-            const message = `
-            <p>Name:  `+firstName + lastName+`</p>
-            <p>Company Name:  `+companyName+`</p>
-            <p>Email:  `+emailAddress+`</p>
-            <p>From Where:  `+fromWhere+`</p>
-            <p>Message:   `+clientMessage+`</p>`;
-  
-            transporter.sendMail({
-              from:emailUsername,
-              to: sendTo,
-              subject: subject,
-              html:message
-  
-            },
-              function (error, response) {
-                if (error) {
-                  console.log(error);
-                  console.log('2')
-                  res.send("Error occured. Please send email to " + sendTo);
-                } else {
-                  success = true;
-                  console.log("Message was sent.");
-                  res.redirect("/");
-                }
-              }
-            );
-          }
-        });
+  var challenge = req.body.challenge;
+  if (challenge.toLowerCase() != 'yellow') {
+    res.redirect('/');
+  } else {
+    var firstName = req.body.firstName;
+    var lastName = req.body.lastName;
+    var companyName = req.body.companyName;
+    var emailAddress = req.body.emailAddress;
+    var fromWhere = req.body.fromWhere || req.body.fromWhereOther;
+    var subject = req.body.subject;
+    var clientMessage = req.body.message;
+
+    const transporter = nodemailer.createTransport({
+      service: "AOL",
+      auth: {
+        user: emailUsername,
+        pass: emailPassword,
+      },
+    });
+    const message = `
+<p>Name:  `+ firstName + lastName + `</p>
+<p>Company Name:  `+ companyName + `</p>
+<p>Email:  `+ emailAddress + `</p>
+<p>From Where:  `+ fromWhere + `</p>
+<p>Message:   `+ clientMessage + `</p>`;
+
+    transporter.sendMail({
+      from: emailUsername,
+      to: sendTo,
+      subject: subject,
+      html: message
+
+    },
+      function (error, response) {
+        if (error) {
+          console.log(error);
+          console.log('2')
+          res.send("Error occured. Please send email to " + sendTo);
+        } else {
+          success = true;
+          console.log("Message was sent.");
+          res.redirect("/");
+        }
       }
+    );
+  }
 });
 
 function wake_up_app() {
