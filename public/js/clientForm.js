@@ -149,6 +149,9 @@ function submitForm() {
     if (values.challenge.toLowerCase() != "yellow") {
       missFields.push("Invalid challenge response\n");
     }
+    if(values.subject == values.message){
+      missFields.push("Please enter a valid subject.\n");
+    }
     if (values.firstName == "") {
       missFields.push("Missing First Name\n");
     }

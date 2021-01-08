@@ -48,11 +48,11 @@ app.post("/send", function (req, res) {
       },
     });
     const message = `
-<p>Name:  `+ firstName + lastName + `</p>
-<p>Company Name:  `+ companyName + `</p>
-<p>Email:  `+ emailAddress + `</p>
-<p>From Where:  `+ fromWhere + `</p>
-<p>Message:   `+ clientMessage + `</p>`;
+      <p>Name:  `+ firstName + lastName + `</p>
+      <p>Company Name:  `+ companyName + `</p>
+      <p>Email:  `+ emailAddress + `</p>
+      <p>From Where:  `+ fromWhere + `</p>
+      <p>Message:   `+ clientMessage + `</p>`;
 
     transporter.sendMail({
       from: emailUsername,
