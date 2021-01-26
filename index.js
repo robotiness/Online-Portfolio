@@ -77,7 +77,7 @@ app.post("/send", function (req, res) {
 });
 
 function wake_up_app() {
-  request('https://cash-app-1.herokuapp.com/', function (error, response, body) {
+  request('https://med-app-testing.herokuapp.com/auth/login', function (error, response, body) {
     if (error) {
       console.log(error)
     } else if (!body) {
