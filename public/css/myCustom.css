@@ -195,3 +195,26 @@ margin-bottom: 10px!important;
 .test-pic-2:hover{
   transform: scale(1.04);
 }
+
+.tech{
+  position:absolute;
+  bottom:0;
+}
+
+.load-all{
+  background-color: #8193ff;
+  color:#fff;
+  cursor: pointer;
+}
+.load-all:hover{
+  color:#fff;
+  background-color: #63BBFB;
+}
+#load-all-content{
+  display:none;
+}
+#sendMailBtn:hover{
+  color:#fff!important;
+  background:transparent!important;
+  border-color: #fff;
+}

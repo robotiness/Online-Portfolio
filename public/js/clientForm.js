@@ -10,7 +10,9 @@ window.onload = function() {
   if (success) {
     successFunction();
   }
+  loadAllProjects();
 }
+
 var addEvent = function(object, type, callback) {
   if (object == null || typeof(object) == 'undefined') return;
   if (object.addEventListener) {
@@ -30,7 +32,22 @@ function removePic(x) {
     myPic.style.display = "block";
   }
 }
+function loadAllProjects(){
+  let loadAllBtn = document.getElementById('load-all-btn');
 
+    loadAllBtn.addEventListener('click',function(){
+        let loadContent = document.getElementById('load-all-content');
+        console.log('click')
+        console.log(loadContent.style.display)
+        if(!loadContent.style.display || loadContent.style.display == 'none'){
+            loadContent.style.display = 'block';
+            this.textContent = "View Less"
+        }else{
+            loadContent.style.display = 'none';
+            this.textContent = "View All"
+        }
+    });
+}
 function removeProject(x) {
   var bigScreen = document.querySelectorAll('.myBigScreen')[0];
   var projectTag = document.getElementById('projectTag');
