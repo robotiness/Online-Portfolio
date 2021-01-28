@@ -218,3 +218,7 @@ margin-bottom: 10px!important;
   background:transparent!important;
   border-color: #fff;
 }
+#load-all-btn{
+  border-style: none!important;
+  outline: none!important;
+}
